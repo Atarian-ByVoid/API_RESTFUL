@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.planotatico.demo.services.PersonServices;
 import com.planotatico.demo.v1.PersonVO;
+import com.planotatico.demo.v2.PersonVO_2;
 
 @RestController
 @RequestMapping("/person")
@@ -54,6 +55,15 @@ public class PersonController {
 
         return service.create(person);
     }
+
+        // Cria uma pessoa - V2
+        @PostMapping(value="/v2",consumes = MediaType.APPLICATION_JSON_VALUE, 
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    
+        public PersonVO_2 createV2(@RequestBody PersonVO_2 person) {
+    
+            return service.createV2(person);
+        }
 
 
 

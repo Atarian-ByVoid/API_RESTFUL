@@ -18,7 +18,7 @@ import com.planotatico.demo.services.PersonServices;
 import com.planotatico.demo.v1.PersonVO;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 
     @Autowired

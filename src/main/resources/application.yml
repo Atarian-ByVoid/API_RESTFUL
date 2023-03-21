@@ -1,0 +1,22 @@
+server:
+  port: 3000
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://172.18.0.3:5432/rest_with_spring_boot_erudio?useTimezone=true&serverTimezone=UTC
+    username: pguser
+    password: pgpassword
+  jpa:
+    hibernate:
+      ddl-auto: none   
+    database: POSTGRESQL
+    show-sql: false
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.PostgreSQL95Dialect
+
+  flyway:
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+      

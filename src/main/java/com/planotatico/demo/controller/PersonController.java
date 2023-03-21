@@ -25,7 +25,7 @@ public class PersonController {
     private PersonServices service;
 
     // procura todas as pessoas
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<PersonVO> findAll() {
         return service.findAll();
     }
@@ -36,7 +36,7 @@ public class PersonController {
     
 
     // procura por id uma pessoa
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 
     public PersonVO findById(@PathVariable(value = "id") Long id) {
 
@@ -47,8 +47,8 @@ public class PersonController {
 
 
     // Cria uma pessoa
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, 
-    produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, 
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 
     public PersonVO create(@RequestBody PersonVO person) {
 
@@ -59,8 +59,8 @@ public class PersonController {
 
 
     // Atualiza uma pessoa
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, 
-    produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, 
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 
     public PersonVO update(@RequestBody PersonVO person) {
 

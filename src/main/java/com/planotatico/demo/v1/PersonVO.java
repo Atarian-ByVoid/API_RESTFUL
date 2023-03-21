@@ -2,6 +2,7 @@ package com.planotatico.demo.v1;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  
@@ -17,6 +18,8 @@ public class PersonVO implements Serializable {
     @JsonProperty("last_name")
     private String lastName;
     private String adress;
+
+    @JsonIgnore
     private String gender;
 
     @Override

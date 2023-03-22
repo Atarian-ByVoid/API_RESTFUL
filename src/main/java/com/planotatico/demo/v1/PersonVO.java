@@ -2,10 +2,13 @@ package com.planotatico.demo.v1;
 
 import java.io.Serializable;
 
+import org.springframework.hateoas.RepresentationModel;
  
-public class PersonVO implements Serializable {
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @com.github.dozermapper.core.Mapping("id")
     private Long key;
     private String firstName;
     private String lastName;

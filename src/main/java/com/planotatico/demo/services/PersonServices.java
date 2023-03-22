@@ -6,11 +6,18 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.planotatico.demo.controller.PersonController;
 import com.planotatico.demo.exceptions.ResourcesNotFoundException;
 import com.planotatico.demo.mapper.DozerMapper;
 import com.planotatico.demo.model.Person;
 import com.planotatico.demo.repositories.PersonRepository;
 import com.planotatico.demo.v1.PersonVO;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+
+
 
 @Service
 public class PersonServices {
@@ -34,7 +41,9 @@ public class PersonServices {
    
         var entity =  repository.findById(id)
                 .orElseThrow(() -> new ResourcesNotFoundException("No records found by ID!"));
-                return DozerMapper.parseObject(entity, PersonVO.class);
+                PersonVO vo = DozerMapper.parseObject(entity, PersonVO.class);
+                vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+                return vo;
     }
 
 

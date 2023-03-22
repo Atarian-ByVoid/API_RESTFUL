@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer  {
 
+
+
     @Override
     public void configureContentNegotiation(final ContentNegotiationConfigurer configurer) {
         /* //Via QUERY PARAM. http://localhost:3000/api/person/v1?mediaType=xml
@@ -31,12 +33,6 @@ public class WebConfig implements WebMvcConfigurer  {
              .mediaType("json",MediaType.APPLICATION_JSON )
              .mediaType("xml",MediaType.APPLICATION_XML);
 
-
-
-
-
-
-       
     }
     
     

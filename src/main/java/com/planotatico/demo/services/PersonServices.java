@@ -39,12 +39,9 @@ public class PersonServices {
 
 
     public PersonVO create(PersonVO person) {
-        System.out.println("return 1 ");
         loger.info("Creating one person: ");
         var entity =   DozerMapper.parseObject(person, Person.class);
-        System.out.println("return 2");
         var vo =   DozerMapper.parseObject (repository.save(entity), PersonVO.class);
-        System.out.println("return 3");
         return vo;
     }
 
@@ -55,7 +52,7 @@ public class PersonServices {
     public PersonVO update(PersonVO person) {
         loger.info("Update one person: ");
 
-        var entity = repository.findById(person.getId())
+        var entity = repository.findById(person.getKey())
                 .orElseThrow(() -> new ResourcesNotFoundException("No records found by ID!"));
 
                 entity.setFirstName(person.getFirstName());

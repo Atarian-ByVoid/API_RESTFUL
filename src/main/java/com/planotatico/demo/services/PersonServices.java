@@ -30,7 +30,12 @@ public class PersonServices {
     public List<PersonVO> findAll() {
         loger.info("Find all persons: ");
 
-        return DozerMapper.parseListObject(repository.findAll(), PersonVO.class);
+        var persons = DozerMapper.parseListObject(repository.findAll(), PersonVO.class);
+
+        persons
+            .stream()
+            .forEach(p->p.add(linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel()));
+        return persons;
     }
 
 
@@ -51,6 +56,7 @@ public class PersonServices {
         loger.info("Creating one person: ");
         var entity =   DozerMapper.parseObject(person, Person.class);
         var vo =   DozerMapper.parseObject (repository.save(entity), PersonVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
         return vo;
     }
 
@@ -71,12 +77,13 @@ public class PersonServices {
 
                 var vo =   DozerMapper.parseObject (repository.save(entity), PersonVO.class);
 
+                vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
                 return vo;
     }
 
 
 
-
+    
     public void delete(Long id) {
         loger.info("Deleting one person: ");
 

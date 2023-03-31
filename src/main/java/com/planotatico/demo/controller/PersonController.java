@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+//@CrossOrigin
 @RestController
 @RequestMapping("/api/person/v1")
 @Tag(name = "People", description = "Endpoints for managing People")
@@ -58,6 +60,7 @@ public class PersonController {
         }
 
         // procura por id uma pessoa
+        @CrossOrigin(origins="http://localhost:3000")
         @GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 
         @Operation(summary = "Finds a Person", description = "Finds a Person", tags = { "People" }, responses = {
@@ -78,6 +81,7 @@ public class PersonController {
         }
 
         // Cria uma pessoa
+        @CrossOrigin(origins={"http://localhost:3000","https://globalSignature.com.br"})
         @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, produces = {
                         MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
         @Operation(summary = "Adds a new Person", description = "Adds a new Person by passing a JSON e XML", tags = {

@@ -1,6 +1,9 @@
+cors: 
+  originPatterns: http://localhost:3000,https://signature.com.br
+
+
 server:
   port: 3000
-
 
 spring:
   datasource:

@@ -1,0 +1,8 @@
+Rota para acessar o Swagger
+http://localhost:3000/swagger-ui/index.html#/
+
+Porta da aplicação 
+http://localhost:3000
+
+Porta da Api-Docs
+http://localhost:3000/v3/api-docs

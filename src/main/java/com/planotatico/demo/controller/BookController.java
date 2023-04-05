@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.planotatico.demo.data.BookVO;
 import com.planotatico.demo.services.BookServices;
-import com.planotatico.demo.v1.BookVO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -35,8 +35,8 @@ public class BookController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE })
 
-	@Operation(summary = "Finds all Books", description = "Endpoints for managing People", tags = {
-			"People" }, responses = {
+	@Operation(summary = "Finds all Books", description = "Endpoints for managing Books", tags = {
+			"Book" }, responses = {
 					@ApiResponse(description = "Sucess", responseCode = "200", content = {
 
 							@Content(
@@ -61,7 +61,7 @@ public class BookController {
 	
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 
-	@Operation(summary = "Finds a Person", description = "Finds a Person", tags = { "People" }, responses = {
+	@Operation(summary = "Finds a Book", description = "Finds a Book", tags = { "Book" }, responses = {
 					@ApiResponse(description = "Sucess", responseCode = "200", content = @Content(schema = @Schema(implementation = BookVO.class)
 
 					)),
@@ -80,7 +80,7 @@ public class BookController {
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	@Operation(summary = "Adds a new Books", description = "Adds a new Book by passing a JSON e XML", tags = {
-			"People" }, responses = {
+			"Book" }, responses = {
 					@ApiResponse(description = "Sucess", responseCode = "200", content = @Content(schema = @Schema(implementation = BookVO.class)
 
 					)),
@@ -96,7 +96,7 @@ public class BookController {
 	@PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	@Operation(summary = "Updates a Books", description = "Updates a Book by passing in a JSON e XML", tags = {
-			"People" }, responses = {
+			"Book" }, responses = {
 					@ApiResponse(description = "Updated", responseCode = "200", content = @Content(schema = @Schema(implementation = BookVO.class)
 
 					)),

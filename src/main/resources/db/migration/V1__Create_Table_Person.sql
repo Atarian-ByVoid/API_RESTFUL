@@ -5,7 +5,7 @@
 -- Dumped from database version 15.2
 -- Dumped by pg_dump version 15.2
 
--- Started on 2023-03-20 17:44:16 UTC
+-- Started on 2023-04-03 13:16:40 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,15 +23,15 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 215 (class 1259 OID 16391)
+-- TOC entry 215 (class 1259 OID 16698)
 -- Name: person; Type: TABLE; Schema: public; Owner: pguser
 --
 
 CREATE TABLE public.person (
-    id bigint NOT NULL, 
+    id bigint NOT NULL,
     first_name character varying(80) NOT NULL,
     last_name character varying(80) NOT NULL,
-    adress character varying(80) NOT NULL,
+    addres character varying(80) NOT NULL,
     gender character varying(6) NOT NULL
 );
 
@@ -39,70 +39,27 @@ CREATE TABLE public.person (
 ALTER TABLE public.person OWNER TO pguser;
 
 --
--- TOC entry 214 (class 1259 OID 16390)
--- Name: person_id_seq; Type: SEQUENCE; Schema: public; Owner: pguser
---
-
-CREATE SEQUENCE public.person_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.person_id_seq OWNER TO pguser;
-
---
--- TOC entry 3348 (class 0 OID 0)
--- Dependencies: 214
--- Name: person_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pguser
---
-
-ALTER SEQUENCE public.person_id_seq OWNED BY public.person.id;
-
-
---
--- TOC entry 3196 (class 2604 OID 16394)
--- Name: person id; Type: DEFAULT; Schema: public; Owner: pguser
---
-
-ALTER TABLE ONLY public.person ALTER COLUMN id SET DEFAULT nextval('public.person_id_seq'::regclass);
-
-
---
--- TOC entry 3342 (class 0 OID 16391)
+-- TOC entry 3356 (class 0 OID 16698)
 -- Dependencies: 215
 -- Data for Name: person; Type: TABLE DATA; Schema: public; Owner: pguser
 --
 
-COPY public.person (id, adress, first_name, gender, last_name) FROM stdin;
-1	Maria da Fé	Carlos	Male	Alberto
-3	Maria da Fé	Pedro	Male	Santiago
-4	Maria da Fé	Nicola	Male	Tesla
+COPY public.person (id, first_name, last_name, addres, gender) FROM stdin;
 \.
 
 
 --
--- TOC entry 3349 (class 0 OID 0)
--- Dependencies: 214
--- Name: person_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
---
-
-SELECT pg_catalog.setval('public.person_id_seq', 4, true);
-
-
---
--- TOC entry 3198 (class 2606 OID 16396)
--- Name: person person_pkey; Type: CONSTRAINT; Schema: public; Owner: pguser
+-- TOC entry 3213 (class 2606 OID 16764)
+-- Name: person id; Type: CONSTRAINT; Schema: public; Owner: pguser
 --
 
 ALTER TABLE ONLY public.person
-    ADD CONSTRAINT person_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT id PRIMARY KEY (id) INCLUDE (id);
 
 
--- Completed on 2023-03-20 17:44:16 UTC
+-- Completed on 2023-04-03 13:16:40 UTC
 
 --
 -- PostgreSQL database dump complete
 --
+

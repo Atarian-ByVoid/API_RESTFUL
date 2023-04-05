@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.planotatico.demo.controller.PersonController;
+import com.planotatico.demo.data.PersonVO;
 import com.planotatico.demo.exceptions.RequiredObjectisNullExeception;
 import com.planotatico.demo.exceptions.ResourcesNotFoundException;
 import com.planotatico.demo.mapper.DozerMapper;
 import com.planotatico.demo.model.Person;
 import com.planotatico.demo.repositories.PersonRepository;
-import com.planotatico.demo.v1.PersonVO;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

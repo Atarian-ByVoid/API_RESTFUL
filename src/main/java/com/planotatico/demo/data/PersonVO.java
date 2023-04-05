@@ -1,4 +1,4 @@
-package com.planotatico.demo.v1;
+package com.planotatico.demo.data;
 
 import java.io.Serializable;
 

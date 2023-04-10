@@ -5,7 +5,7 @@
 -- Dumped from database version 15.2
 -- Dumped by pg_dump version 15.2
 
--- Started on 2023-04-03 13:16:40 UTC
+-- Started on 2023-04-06 20:11:33 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 215 (class 1259 OID 16698)
+-- TOC entry 214 (class 1259 OID 16884)
 -- Name: person; Type: TABLE; Schema: public; Owner: pguser
 --
 
@@ -31,7 +31,7 @@ CREATE TABLE public.person (
     id bigint NOT NULL,
     first_name character varying(80) NOT NULL,
     last_name character varying(80) NOT NULL,
-    addres character varying(80) NOT NULL,
+    address character varying(100) NOT NULL,
     gender character varying(6) NOT NULL
 );
 
@@ -39,25 +39,49 @@ CREATE TABLE public.person (
 ALTER TABLE public.person OWNER TO pguser;
 
 --
--- TOC entry 3356 (class 0 OID 16698)
--- Dependencies: 215
+-- TOC entry 215 (class 1259 OID 16887)
+-- Name: person_id_seq; Type: SEQUENCE; Schema: public; Owner: pguser
+--
+
+ALTER TABLE public.person ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.person_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 3354 (class 0 OID 16884)
+-- Dependencies: 214
 -- Data for Name: person; Type: TABLE DATA; Schema: public; Owner: pguser
 --
 
-COPY public.person (id, first_name, last_name, addres, gender) FROM stdin;
+COPY public.person (id, first_name, last_name, address, gender) FROM stdin;
 \.
 
 
 --
--- TOC entry 3213 (class 2606 OID 16764)
--- Name: person id; Type: CONSTRAINT; Schema: public; Owner: pguser
+-- TOC entry 3361 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: person_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
+--
+
+SELECT pg_catalog.setval('public.person_id_seq', 1, false);
+
+
+--
+-- TOC entry 3211 (class 2606 OID 16892)
+-- Name: person person_pkey; Type: CONSTRAINT; Schema: public; Owner: pguser
 --
 
 ALTER TABLE ONLY public.person
-    ADD CONSTRAINT id PRIMARY KEY (id) INCLUDE (id);
+    ADD CONSTRAINT person_pkey PRIMARY KEY (id);
 
 
--- Completed on 2023-04-03 13:16:40 UTC
+-- Completed on 2023-04-06 20:11:33 UTC
 
 --
 -- PostgreSQL database dump complete

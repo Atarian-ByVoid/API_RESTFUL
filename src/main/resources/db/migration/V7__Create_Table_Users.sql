@@ -5,7 +5,7 @@
 -- Dumped from database version 15.2
 -- Dumped by pg_dump version 15.2
 
--- Started on 2023-04-03 12:42:37 UTC
+-- Started on 2023-04-06 20:13:47 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 220 (class 1259 OID 16727)
+-- TOC entry 221 (class 1259 OID 16908)
 -- Name: users; Type: TABLE; Schema: public; Owner: pguser
 --
 
@@ -35,33 +35,48 @@ CREATE TABLE public.users (
     account_non_expired bit(1),
     account_non_locked bit(1),
     credentials_non_expired bit(1),
-    enable bit(1)
+    enabled bit(1)
 );
 
 
 ALTER TABLE public.users OWNER TO pguser;
 
 --
--- TOC entry 3354 (class 0 OID 16727)
--- Dependencies: 220
+-- TOC entry 220 (class 1259 OID 16907)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: pguser
+--
+
+ALTER TABLE public.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 3355 (class 0 OID 16908)
+-- Dependencies: 221
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: pguser
 --
 
-COPY public.users (id, user_name, full_name, password, account_non_expired, account_non_locked, credentials_non_expired, enable) FROM stdin;
+COPY public.users (id, user_name, full_name, password, account_non_expired, account_non_locked, credentials_non_expired, enabled) FROM stdin;
 \.
 
 
 --
--- TOC entry 3209 (class 2606 OID 16735)
--- Name: users uk_user_name; Type: CONSTRAINT; Schema: public; Owner: pguser
+-- TOC entry 3361 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT uk_user_name UNIQUE (user_name);
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --
--- TOC entry 3211 (class 2606 OID 16733)
+-- TOC entry 3211 (class 2606 OID 16912)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: pguser
 --
 
@@ -69,7 +84,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
--- Completed on 2023-04-03 12:42:37 UTC
+-- Completed on 2023-04-06 20:13:47 UTC
 
 --
 -- PostgreSQL database dump complete

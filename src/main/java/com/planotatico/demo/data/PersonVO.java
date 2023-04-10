@@ -7,8 +7,7 @@ import org.springframework.hateoas.RepresentationModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
-@JsonPropertyOrder({"id","firstName","firstName","lastName","adress","gender"})
+@JsonPropertyOrder({ "id", "firstName", "firstName", "lastName", "address", "gender" })
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -17,68 +16,20 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     private Long key;
     private String firstName;
     private String lastName;
-    private String adress;
+    private String address;
     private String gender;
 
-  
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-
-
     public PersonVO() {
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
-    public Long getKey() {
-        return key;
-    }
-
-    public void setKey(Long key) {
-        this.key = key;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
+        int result = super.hashCode();
         result = prime * result + ((key == null) ? 0 : key.hashCode());
         result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-        result = prime * result + ((adress == null) ? 0 : adress.hashCode());
+        result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((gender == null) ? 0 : gender.hashCode());
         return result;
     }
@@ -87,7 +38,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -107,10 +58,10 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
                 return false;
         } else if (!lastName.equals(other.lastName))
             return false;
-        if (adress == null) {
-            if (other.adress != null)
+        if (address == null) {
+            if (other.address != null)
                 return false;
-        } else if (!adress.equals(other.adress))
+        } else if (!address.equals(other.address))
             return false;
         if (gender == null) {
             if (other.gender != null)
@@ -118,6 +69,50 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
         } else if (!gender.equals(other.gender))
             return false;
         return true;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public Long getKey() {
+        return key;
+    }
+
+    public void setKey(Long key) {
+        this.key = key;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 }

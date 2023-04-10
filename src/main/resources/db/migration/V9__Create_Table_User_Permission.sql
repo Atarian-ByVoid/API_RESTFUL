@@ -5,7 +5,7 @@
 -- Dumped from database version 15.2
 -- Dumped by pg_dump version 15.2
 
--- Started on 2023-04-03 13:11:12 UTC
+-- Started on 2023-04-06 20:12:22 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 222 (class 1259 OID 16746)
+-- TOC entry 222 (class 1259 OID 16915)
 -- Name: user_permission; Type: TABLE; Schema: public; Owner: pguser
 --
 
@@ -36,25 +36,26 @@ CREATE TABLE public.user_permission (
 ALTER TABLE public.user_permission OWNER TO pguser;
 
 --
--- TOC entry 3358 (class 0 OID 16746)
+-- TOC entry 3356 (class 0 OID 16915)
 -- Dependencies: 222
 -- Data for Name: user_permission; Type: TABLE DATA; Schema: public; Owner: pguser
 --
 
-
+COPY public.user_permission (id_user, id_permission) FROM stdin;
+\.
 
 
 --
--- TOC entry 3213 (class 2606 OID 16750)
+-- TOC entry 3211 (class 2606 OID 16919)
 -- Name: user_permission user_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: pguser
 --
 
 ALTER TABLE ONLY public.user_permission
-    ADD CONSTRAINT user_permission_pkey PRIMARY KEY (id_permission, id_user);
+    ADD CONSTRAINT user_permission_pkey PRIMARY KEY (id_user, id_permission);
 
 
 --
--- TOC entry 3214 (class 2606 OID 16753)
+-- TOC entry 3212 (class 2606 OID 16920)
 -- Name: user_permission fk_user_permission; Type: FK CONSTRAINT; Schema: public; Owner: pguser
 --
 
@@ -63,7 +64,7 @@ ALTER TABLE ONLY public.user_permission
 
 
 --
--- TOC entry 3215 (class 2606 OID 16758)
+-- TOC entry 3213 (class 2606 OID 16925)
 -- Name: user_permission fk_user_permission_permission; Type: FK CONSTRAINT; Schema: public; Owner: pguser
 --
 
@@ -71,7 +72,7 @@ ALTER TABLE ONLY public.user_permission
     ADD CONSTRAINT fk_user_permission_permission FOREIGN KEY (id_permission) REFERENCES public.permission(id) NOT VALID;
 
 
--- Completed on 2023-04-03 13:11:12 UTC
+-- Completed on 2023-04-06 20:12:23 UTC
 
 --
 -- PostgreSQL database dump complete

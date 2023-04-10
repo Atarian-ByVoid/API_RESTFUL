@@ -4,15 +4,31 @@ import java.util.Date;
 
 public class TokenVO {
 
+
+    public TokenVO(String username, Boolean authenticated, Date created, Date expiration, String accessToken,
+            String refreshToken) {
+        this.username = username;
+        this.authenticated = authenticated;
+        this.created = created;
+        this.expiration = expiration;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
+
     private static final long serialVersionUID = 1L;
+	
+	private String username;
+	private Boolean authenticated;
+	private Date created;
+	private Date expiration;
+	private String accessToken;
+	private String refreshToken;
+	
+	public TokenVO() {}
 
-    private String username;
-    private Boolean authenticated;
-    private Date created;
-    private Date expiration;
-    private String accesToken;
 
-    @Override
+    
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -20,7 +36,8 @@ public class TokenVO {
         result = prime * result + ((authenticated == null) ? 0 : authenticated.hashCode());
         result = prime * result + ((created == null) ? 0 : created.hashCode());
         result = prime * result + ((expiration == null) ? 0 : expiration.hashCode());
-        result = prime * result + ((accesToken == null) ? 0 : accesToken.hashCode());
+        result = prime * result + ((accessToken == null) ? 0 : accessToken.hashCode());
+        result = prime * result + ((refreshToken == null) ? 0 : refreshToken.hashCode());
         return result;
     }
 
@@ -53,20 +70,17 @@ public class TokenVO {
                 return false;
         } else if (!expiration.equals(other.expiration))
             return false;
-        if (accesToken == null) {
-            if (other.accesToken != null)
+        if (accessToken == null) {
+            if (other.accessToken != null)
                 return false;
-        } else if (!accesToken.equals(other.accesToken))
+        } else if (!accessToken.equals(other.accessToken))
+            return false;
+        if (refreshToken == null) {
+            if (other.refreshToken != null)
+                return false;
+        } else if (!refreshToken.equals(other.refreshToken))
             return false;
         return true;
-    }
-
-    public TokenVO(String username, Boolean authenticated, Date created, Date expiration, Object acessToken, String accesToken) {
-        this.username = username;
-        this.authenticated = authenticated;
-        this.created = created;
-        this.expiration = expiration;
-        this.accesToken = accesToken;
     }
 
     public static long getSerialversionuid() {
@@ -105,19 +119,22 @@ public class TokenVO {
         this.expiration = expiration;
     }
 
-    public String getAccesToken() {
-        return accesToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAccesToken(String accesToken) {
-        this.accesToken = accesToken;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public TokenVO(String username2, boolean b, Date now, Date validity, String acessToken, String refreshToken){
-        
+    public String getRefreshToken() {
+        return refreshToken;
     }
 
-    public TokenVO() {
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
+
+
 
 }

@@ -10,18 +10,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="person")
+@Table(name = "person")
 public class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Person(Long id, String firstName, String lastName, String address, String gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.gender = gender;
+    @Column(name = "first_name", nullable = false, length = 80)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false, length = 80)
+    private String lastName;
+
+    @Column(nullable = false, length = 80)
+    private String address;
+
+    @Column(nullable = false, length = 6)
+    private String gender;
+
+    @Column(nullable = false)
+    private Boolean enabled;
+
+    public Person() {
     }
-
-
 
     @Override
     public int hashCode() {
@@ -32,10 +44,9 @@ public class Person implements Serializable {
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
         result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+        result = prime * result + ((enabled == null) ? 0 : enabled.hashCode());
         return result;
     }
-
-
 
     @Override
     public boolean equals(Object obj) {
@@ -71,99 +82,64 @@ public class Person implements Serializable {
                 return false;
         } else if (!gender.equals(other.gender))
             return false;
+        if (enabled == null) {
+            if (other.enabled != null)
+                return false;
+        } else if (!enabled.equals(other.enabled))
+            return false;
         return true;
     }
-
-
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name="first_name", nullable = false, length = 80)
-    private String firstName;
-
-    @Column(name="last_name",nullable = false, length = 80)
-    private String lastName;
-    
-    @Column(nullable = false, length = 80)
-    private String address;
-
-    @Column(nullable = false, length = 6)
-    private String gender;
- 
-
-   
-    public Person() {
-    }
-
-
 
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
 
-
-
     public Long getId() {
         return id;
     }
-
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-
     public String getFirstName() {
         return firstName;
     }
-
-
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-
-
     public String getLastName() {
         return lastName;
     }
-
-
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-
-
     public String getAddress() {
         return address;
     }
-
-
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-
-
     public String getGender() {
         return gender;
     }
-
-
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    
-    
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
 }

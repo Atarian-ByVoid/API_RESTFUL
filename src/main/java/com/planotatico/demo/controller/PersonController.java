@@ -3,11 +3,11 @@ package com.planotatico.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.planotatico.demo.data.PersonVO;
 import com.planotatico.demo.services.PersonServices;
+import org.springframework.http.MediaType;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -60,7 +61,7 @@ public class PersonController {
         }
 
         // procura por id uma pessoa
-        @CrossOrigin(origins="http://localhost:3000")
+        @CrossOrigin(origins = "http://localhost:3000")
         @GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 
         @Operation(summary = "Finds a Person", description = "Finds a Person", tags = { "People" }, responses = {
@@ -81,7 +82,7 @@ public class PersonController {
         }
 
         // Cria uma pessoa
-        @CrossOrigin(origins={"http://localhost:3000","https://globalSignature.com.br"})
+        @CrossOrigin(origins = { "http://localhost:3000", "https://globalSignature.com.br" })
         @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, produces = {
                         MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
         @Operation(summary = "Adds a new Person", description = "Adds a new Person by passing a JSON e XML", tags = {
@@ -119,6 +120,29 @@ public class PersonController {
 
                 return service.update(person);
         }
+
+
+        @PatchMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+
+        @Operation(summary = "Disable a specific Person by your ID", description = "Disable a specific Person by your ID", tags = { "People" }, responses = {
+                        @ApiResponse(description = "Sucess", responseCode = "200", content = @Content(schema = @Schema(implementation = PersonVO.class)
+
+                        )),
+                        @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+                        @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                        @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                        @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                        @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+
+        })
+
+        public PersonVO disablePerson(@PathVariable(value = "id") Long id) {
+
+                return service.disablePerson(id);
+        }
+
+
+   
 
         // Deleta uma pessoa
         @DeleteMapping(value = "/{id}")

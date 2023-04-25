@@ -12,7 +12,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://172.18.0.2:5432/rest_with_spring_boot_erudio?useTimezone=true&serverTimezone=UTC
+    url: jdbc:postgresql://172.18.0.3:5432/rest_with_spring_boot_erudio?useTimezone=true&serverTimezone=UTC
     username: pguser
     password: pgpassword
   jpa:

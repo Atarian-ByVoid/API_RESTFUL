@@ -1,6 +1,8 @@
 cors: 
   originPatterns: http://localhost:3000,https://signature.com.br
 
+file:
+  upload-dir: /home/desenvolvimento/uploadDier
 security:
   jwt:
     token:
@@ -23,6 +25,13 @@ spring:
     properties:
         hibernate:
             dialect: org.hibernate.dialect.PostgreSQL95Dialect
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+        
 
   flyway:
     locations: classpath:db/migration

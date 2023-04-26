@@ -40,7 +40,7 @@ public class FileStorageService {
         try {
             
         } catch (Exception e) {
-            throw new FileStorageException("Could not be store file"+filename+".Ple",e);
+            throw new FileStorageException("Could not be store file"+filename+".Please try again",e);
         }
     }
 
